@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            body {
+              font-family: 'Courier New', monospace;
+            }
+            </style>
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body style="background-color:#002B36;">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div style="margin-left: 50px;, margin-top: 30px; ">
+            <p style="font-size: 75px; color: darkcyan;">
+                J a i d e n <br>                           
+                D a h l k e
+            </p>
+        </div>
+
+        <div style="margin-left: 50px; margin-top: 75px; font-size: 22px;">
+            <p style="color: #85991C;">
+                Mathematics <br>
+                Brock Univertiy <br>
+                jd21az@brocku.ca <br>
+            </p>
+        </div>
+        <div style="margin-left: 50px; margin-top: 1px; font-size: 22px;">
+            <p style="color: #268BC8;">
+                Currently Reading:<br>
+                Algebra by Lang<br>
+
+                Representation Theory: A First Course by Fulton Harris<br>
+            </p>
+        </div>
+
+        <div style="margin-left: 50px; margin-top: 1px; font-size: 22px;">
+            <p style="color: #CB4B27;">
+               Interests: <br>
+               My interests lie in mathematics that is inherently useful.<br>
+               In order to have 23rd century technology we must have engineers, biologists, etc... <br>
+               who are well acquainted with at least a few volumes of Landau Lifshitz <br>
+               and the mathematical formalisms that are associated with their respective field.  
+            </p>
+        </div>
+        
+        <div style="margin-left: 50px; margin-top: 1px; font-size: 22px;">
+            <details>
+                <summary style="font-size: 35px; color: #A57C1A">Principal of Least Action</summary>
+                <p style="color: lightblue">
+                    Currently my favorite section of any book is from Landau Lifshitz volume 1, namely the first 2 chapters. The first page of chapter 1 starts off 
+                    by talking about generalized cordinates: If we have a system of N particles then we need 3N quantities to describe it's position, but just having
+                     these quantities isn't enough to calculate the *motion* of the system, for that we need the velocities of each particle. <br>
+                     <br>
+                     The next section introduces an unnamed function, \(L(q,\dot{q},t)\), the claim is that every system is characterized by such a function, 
+                     and that the motion of said system acts in such a way where the following condition involving L is satasfied:
+
+                     $$S = \int_{t_1}^{t_2} L(q,\dot{q},t) dt$$
+
+                     This integral is known as the action. This integral paints the picture that things move in such a way where the 'effort' is minimal. This idea is
+                     obvious to any human too, if you throw something you know it will take some path, and this path depends on a handful of quantities. <br>
+                     
+                     <br>
+                     
+                     But how do we get from this integral to a set of differential equations that determine the motion of a system? I.e what path minimizes the action?<br>
+                    
+                     <br>
+                    
+                     Lets consider a function \(q(t)\) where S is at a minimum. Since S is at a miniumum, any small variation of the function \(q(t)\) results in an 
+                     increase
+                     of S. Let \(\delta q(t)\) be some function that is 'small', by that I mean when added to \(q(t)\) it infinitesimally varies the path. <br>
+
+                     The action varies between these two paths by <br>
+
+                     $$ \int_{t_1}^{t_2} L(q+\delta q,\dot{q} + \delta \dot{q} ,t) dt - \int_{t_1}^{t_2} L(q,\dot{q},t) dt $$
+                </p>
+            </details>
+        </div>
+        
+        
+    </body>
+</html>
