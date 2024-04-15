@@ -7,75 +7,92 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Jaiden Dahlke</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
         <style>
             body {
-              font-family: 'Courier New', monospace;
+              font-family: 'Arial', sans-serif;
+              background-color:#002B36;
+              color: #268BC8;
+              line-height: 1.6;
             }
-            </style>
-            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+            h1, h2, a {
+              color: darkcyan;
+            }
+            h1 {
+              font-size: 75px;
+              text-align: center;
+              margin-bottom: 0;
+            }
+            h2 {
+              font-size: 28px;
+              font-weight: bold;
+              margin-top: 30px;
+            }
+            p, a {
+              font-size: 22px;
+              margin-left: 50px;
+              margin-right: 50px;
+              color: #88B4E3; /* Lighter blue accent */
+            }
+            a {
+              color: #CB4B27; /* Accent color for links */
+              text-decoration: none;
+            }
+            a:hover {
+              text-decoration: underline;
+            }
+            .content-section {
+              margin-top: 20px;
+            }
+        </style>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
-    <body style="background-color:#002B36;">
+    <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div style="margin-left: 50px; margin-top: 30px; ">
-            <p style="font-size: 75px; color: darkcyan;">
-                J a i d e n <br>                           
-                D a h l k e
+        <h1>Jaiden Dahlke</h1>
+
+        <div class="content-section">
+            <h2>Contact</h2>
+            <p>Mathematics <br>
+               Brock University <br>
+               jd21az@brocku.ca
             </p>
         </div>
 
-        <div style="margin-left: 50px; margin-top: 75px; font-size: 22px;">
-            <p style="color: darkcyan;">
-                Mathematics <br>
-                Brock Univertiy <br>
-                jd21az@brocku.ca <br>
-            </p>
-            <p style="color: darkcyan; word-wrap: break-word;">
-                Research:<br>
-            </p>
-            <p style="color: #268BC8; word-wrap: break-word;">
-                Currently my research is to do with computing symmetries and conserved quantities of relativistic dynamics.
-                From a symmetry standpoint the PDEs governing relativistic dynamics are interesting because they can admit certain infinite dimensional families 
-                of symmetries. From a computational standpoint they are interesting because modern symbolic manipulation programs destroy Lorentz invariance by
-                "privileging" time
-            </p>
-        </div>
-        <div style="margin-left: 50px; margin-top: 1px; font-size: 22px;">
-            <p style="color: darkcyan; word-wrap: break-word;">
-             Currently Reading:
-            </p>
-            <p style="color: #268BC8;">
-                Applications of Lie Groups to Differential Equations
- by Peter Olver<br>
-
-                Quantum Mechanics by Landau Lifshitz<br>
-
-                Quantum Theory, Groups and Representations by Peter Woit
-                
-                Lectures on Differential Geometry by Shlomo Sternberg
+        <div class="content-section">
+            <h2>Research</h2>
+            <p>Currently my research is to do with computing symmetries and conserved quantities of relativistic dynamics.
+               From a symmetry standpoint, the PDEs governing relativistic dynamics are interesting because they can admit
+               certain infinite dimensional families of symmetries. From a computational standpoint, they are interesting
+               because modern symbolic manipulation programs destroy Lorentz invariance by "privileging" time.
             </p>
         </div>
 
-        <div style="margin-left: 50px; margin-top: 1px; font-size: 22px;">
-            <p style="color: darkcyan; word-wrap: break-word;">
-                Interests:
-               </p>
-            <p style="color: #268BC8; word-wrap: break-word;">
-               My interest lie in the intersection of theoretical physics and mathematics, that is to say I am interested in differential geometry, 
-               algebraic topology, representation theory, etc... Additionally I am interested in Robert Hermann's program, the goal of which is to 
-               geometrically formulate ideas from engineering.    </p>
+        <div class="content-section">
+            <h2>Currently Reading</h2>
+            <p>Applications of Lie Groups to Differential Equations by Peter Olver <br>
+               Quantum Mechanics by Landau Lifshitz <br>
+               Quantum Theory, Groups, and Representations by Peter Woit <br>
+               Lectures on Differential Geometry by Shlomo Sternberg
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Interests</h2>
+            <p>My interest lie in the intersection of theoretical physics and mathematics, that is to say, I am interested in
+               differential geometry, algebraic topology, representation theory, etc... Additionally, I am interested in Robert
+               Hermann's program, the goal of which is to geometrically formulate ideas from engineering.
+            </p>
         </div>
         
-        <div style="margin-left: 50px; margin-top: 1px; font-size: 22px;">
-            <a style="color: #CB4B27;"; href="pde.html">Lie Symmetry of PDEs</a>
+        <div class="content-section">
+            <a href="pde.html">Lie Symmetry of PDEs</a>
         </div>
-        
-        
     </body>
 </html>
