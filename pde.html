@@ -88,7 +88,12 @@
                 \]</p>
                 <p>This transformation is called the infinitesimal generator of a rotation.</p>
                 <p>From this it is easy to see that \( x^2+y^2 \) remains invariant. An important thing to note here is that the expression for an infinitesimal rotation is simpler than that of a finite rotation.</p>
-                <p>Finally, we can represent an infinitesimal rotation as an action on functions, this will reduce the problem of finding symmetries to one of solving a PDE. First note that we can define a representation of \( G \) to act on functions by \( (\pi(g)f)(x) = f(g^{-1}x) \). So, \( R(\theta) \) acts on a function \( f(x,y) \) by \( f(R^{-1}(\theta)(x,y)) = f(y, -x) \). Since we want this transformation to be infinitesimal we compute the first order Taylor expansion of \( f(y, -x) \), this gives \( y\partial_x f - x\partial_y f \).</p>
+                <p>Finally, we can represent an infinitesimal rotation as an action on functions, this will reduce the problem of finding symmetries to one of solving a PDE. First note that we can define a representation of \( G \) to act on functions by \( (\pi(g)f)(x) = f(g^{-1}x) \). So, an infinitesimal rotation acts on a function \( f(x,y) \) by \( f(                    \begin{pmatrix}
+                   0 & -1 \\
+                   1 & 0
+                \end{pmatrix}                 \begin{pmatrix}
+                    x \\ y
+                \end{pmatrix}) = f(y, -x) \). Since we want this transformation to be infinitesimal we compute the first order Taylor expansion of \( f(y, -x) \), this gives \( y\partial_x f - x\partial_y f \).</p>
                 <p>Therefore, we can conclude that an algebraic equation is rotationally symmetric if the rotational vector field vanishes on the equation.</p>
                 <img src="inf_rotation.png" alt="The vector field \( y\partial_x - x\partial_y \) describes an infinitesimal symmetry of the circle">
                 <figcaption>The vector field \( y\partial_x-x\partial_y \) describes an infinitesimal symmetry of the circle.</figcaption>
