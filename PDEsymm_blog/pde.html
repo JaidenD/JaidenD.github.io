@@ -101,6 +101,33 @@
                 <p>Therefore, we can conclude that an algebraic equation is rotationally symmetric if the rotational vector field vanishes on the equation.</p>
                 <img src="inf_rotation.png" alt="The vector field \( y\partial_x - x\partial_y \) describes an infinitesimal symmetry of the circle" style="text-align: center;">
                 <figcaption style="text-align: center;">The vector field \( y\partial_x-x\partial_y \) describes an infinitesimal symmetry of the circle.</figcaption>
+                \section*{Symmetries of Differential equations}
+                In the previous example, we saw how symmetries correspond to vector fields, which can be solved as a linear PDE to yield classes of algebraic equations that are invariant under that symmetry. We will now develop an analogous method for PDEs, such that if we know the symmetries of a PDE, we can generate classes of solutions invariant under those symmetries.
+
+                First order of business is to understand how symmetries act on PDEs, then develop a procedure which takes a PDE and gives its symmetries.
+
+                \section*{Jet Space}
+                We will denote the space of independent variables, like \(x, y, z\) in \(\mathbb{R}^3\), with \(X\), and the space of dependent variables, that is variables \(u\) which depend on \(x \in X\), with \(U\). We know how transformations act on \(X\), so how do they act on \(U\)?
+
+                Consider the action of \(SO(2)\) on \(X \times U \simeq \mathbb{R} \times \mathbb{R}\) where \((x, u)\) is transformed into \((\tilde{x}, \tilde{u})\), then 
+                \[
+                (\tilde{x}, \tilde{u}) = g(\theta)(x, u) = (x \cos \theta - u \sin \theta, x \sin \theta + u \cos \theta)
+                \]
+                (maybe on web end implement thing where you can input function and angle and see the rotation?). Now for example, take \(u = f(x) = ax + b\), under the same transformation this gives 
+                \[
+                (\tilde{x}, \tilde{f}(\tilde{x})) = ((x \cos \theta - (ax + b) \sin \theta), x \sin \theta + (ax + b) \cos \theta)
+                \]
+                Isolating \(x\) we have 
+                \[
+                x = \frac{\tilde{x} + b \sin \theta}{\cos \theta - a \sin \theta},
+                \]
+                and subbing into the expression for \(\tilde{f}(\tilde{x})\) we get that \(f\) transformed under the action of \(SO(2)\) is 
+                \[
+                \tilde{f}(\tilde{x}) = \frac{\sin \theta + a \cos \theta}{\cos \theta - a \sin \theta} \tilde{x} + \frac{b}{\cos \theta - a \sin \theta}
+                \]
+
+                Next, we'd like to prolong group action into "jet space", that is, extend our transformations to the derivatives of \(u\). This will allow us to apply group actions to PDEs and determine their invariance.
+
             </div>
         </div>
     </body>
