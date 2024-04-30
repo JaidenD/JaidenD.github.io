@@ -1,0 +1,40 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color:#aeadbe;
+    color: #fdfdfd;
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+.content-section {
+    color: #333; /* Dark gray text color */
+    padding: 20px; /* Adds space inside the content area */
+    margin: auto; /* Centers the content block horizontally */
+    max-width: 800px; /* Limits the content width and ensures it doesn't sprawl across wide screens */
+    background-color: #ffffff; /* Light gray background for the content area */
+}
+
+.text {
+    font-family: 'Times New Roman', Times, serif; /* Sets the font for all .content elements */
+    font-size: 13px;
+}
+.title {
+    font-family: sans-serif;
+    size: 25px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+
+
+a {
+    color: rgb(78, 154, 224);
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: rgb(54, 109, 160);
+}
