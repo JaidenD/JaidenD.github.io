@@ -16,6 +16,11 @@ img {
     background-color: #ffffff; /* Light gray background for the content area */
 }
 
+.me-content{
+    display: flex;
+    align-items: flex-start;
+}
+
 .text {
     font-family: 'Times New Roman', Times, serif; /* Sets the font for all .content elements */
     font-size: 13px;
@@ -37,4 +42,19 @@ a:hover {
 }
 a:visited {
     color: rgb(54, 109, 160);
+}
+
+.me_pic{
+    width: 50%;
+    height: auto;
+}
+
+.me_pic {
+    margin-right: 20px; /* Adjust the space between the image and the text */
+    width: 50%; /* Adjust the image width as needed */
+    height: auto;
+}
+
+.me_text {
+    flex: 1;
 }
