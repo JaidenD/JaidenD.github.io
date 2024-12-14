@@ -125,7 +125,7 @@
                         To estimate $\lambda$, consider a reference trajectory $u_1(t)$ and another trajectory $u_2(t)$ that starts a small distance $\delta$ away in phase space. As both evolve, we record their separation at discrete time intervals. If the average growth of their separation behaves like $e^{\lambda t}$, then $\lambda$ quantifies how chaotic the system is.
                     </p>
                     
-                    <p>Algorithm (implemented in Julia using the ChaosTools package):</p>
+                    <p>Algorithm</p>
                     <ol>
                         <li>Choose a trajectory $u_1(t)$ and a small initial displacement $\delta$.</li>
                         <li>Define $u_2(t)$ so that $u_2(x_0) = u_1(x_0+\delta)$.</li>
@@ -144,7 +144,7 @@
                     </p>
                     
                     <p>
-                        Using this algorithm, we plotted the Lyapunov exponent as a function of the ratio of the arm lengths $(L_2/L_1)$:
+                        The above algorithm is implemented in Julia's ChaosTools library, using it we plotted the Lyapunov exponent as a function of the ratio of the arm lengths $(L_2/L_1)$:
                     </p>
                     
                     <!-- Insert figure showing Lyapunov exponent variation -->
@@ -220,8 +220,19 @@
                     
                     <img src="HighLEpoincare.png" alt="Lyapunov exponent figure" style="max-width:100%;">
                     <p>
-                        Through these techniques—the Lyapunov exponent and the Poincaré map—we gain a richer understanding of the intricate and often surprising dynamics of the double pendulum.
+                        Looking the low Lyapunov exponent example, we see that the points on the poincare map are much denser, comapred to the high Lyapunov exponent case, where the dots are spread out. If we were to identify periodic or quasi-periodic orbits, we'd see finitelt many point, or points which are sense in some region.
                     </p>
+                    <h2><strong>Conclusion</strong></h2>
+                    <p>
+                     We demonstarted how considering the topology of phase space provides deeper intuition to the nature of chaos iand tools used to study it.
+                    </p>
+                    <p>
+                        There are a lot of exciting directions to extend this work, for example, it would be nice to make these animations interactive. Additionally we could implement a theory called symbolic dynamics, which allows you to (approximately) identify periodic orbits, periodic orbits are of 'measure zero' in chaotic systems, so they are hard to stumble across, and difficult to numerically simulate. Additionally, it would be nice to have a more convincing animation for the Poincaré map, perhaps atatching the momentum vecotr instead of the red points, since the momentum appears out of 'no where' on the plot.
+                    </p>
+                    <h2><strong>Code</strong></h2>
+                    <a href="double_pendulum.jl" target="_blank">Double Pendulum Plotting</a>
+                    <a href="LE_plot.jl" target="_blank">Lyapunov Exponent Plotting</a>
+                    <a href="phaseplotpend.jl" target="_blank">Single-Armed Pendulum Plotting</a>
                 </div>
             </div>
         </div>
