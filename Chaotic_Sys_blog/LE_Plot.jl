@@ -37,12 +37,10 @@ function double_pendulum!(du, u, p, t)
 
     du[1] = ω1
     du[2] = ω2
-
     du[3] = (m2 * L1 * ω1^2 * sinΔθ * cosΔθ +
              m2 * g * sin(θ2) * cosΔθ +
              m2 * L2 * ω2^2 * sinΔθ -
              (m1 + m2) * g * sin(θ1)) / denom1
-
     du[4] = (-m2 * L2 * ω2^2 * sinΔθ * cosΔθ +
              (m1 + m2) * (g * sin(θ1) * cosΔθ -
              L1 * ω1^2 * sinΔθ -
@@ -64,16 +62,13 @@ function compute_and_plot_lyapunov_band(ratios, filename)
         LE_values = zeros(num_calculations)
         
         for j in 1:num_calculations
-            # Perturb initial conditions slightly
-            δu0 = 0.01 * randn(length(u0))  # Small random perturbation
+            # Perturb initial conditions
+            δu0 = 0.01 * randn(length(u0)) 
             u0_perturbed = u0 .+ δu0
             
-            # Create the ContinuousDynamicalSystem
             ds = ContinuousDynamicalSystem(double_pendulum!, u0_perturbed, p)
-            
-            # Compute the largest Lyapunov exponent
-            λ = lyapunov(ds, tspan[2]; Δt = dt)
-            
+
+            λ = lyapunov(ds, tspan[2]; Δt = dt)            
             LE_values[j] = λ
         end
         
@@ -83,25 +78,24 @@ function compute_and_plot_lyapunov_band(ratios, filename)
         println("Ratio L2/L1 = $(ratio): LE mean = $(avg_LE[i]), std = $(std_LE[i])")
     end
     
-    # Identify the indices of the highest and lowest average LE
+    # Indices of the highest and lowest average LE
     idx_max = argmax(avg_LE)
     idx_min = argmin(avg_LE)
     
-    # Get the corresponding ratios and round to 3 decimal places
+    # Get the corresponding ratios and round to 3 decimals
     ratio_max = round(ratios[idx_max], digits=3)
     ratio_min = round(ratios[idx_min], digits=3)
     
     println("\nHighest average LE at ratio L2/L1 = $(ratio_max)")
     println("Lowest average LE at ratio L2/L1 = $(ratio_min)")
     
-    # Convert ratios to a standard array for plotting
     x = collect(ratios)
     
-    # Compute upper and lower bands (avg ± std)
+    # Compute upper and lower bands
     upper_band = avg_LE .+ std_LE
     lower_band = avg_LE .- std_LE
     
-    # Plotting the results with Makie
+    # Plotting the results
     fig = Figure(size = (800, 600))
     ax = Axis(fig[1, 1],
               title = "Lyapunov Exponent vs Arm Length Ratio",
@@ -118,7 +112,6 @@ function compute_and_plot_lyapunov_band(ratios, filename)
     scatter!(ax, [x[idx_max]], [avg_LE[idx_max]], color = :red, markersize = 10, label="Highest Avg LE")
     scatter!(ax, [x[idx_min]], [avg_LE[idx_min]], color = :green, markersize = 10, label="Lowest Avg LE")
     
-    # Add a legend
     axislegend(ax, position = :rt)
     
     save(filename, fig)
