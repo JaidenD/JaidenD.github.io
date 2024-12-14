@@ -47,7 +47,10 @@
                     
                     <p>Animating the pendulum and its trajectory in phase space for given initial parameters:</p>
                     <!-- Insert animation of single pendulum here -->
-                    <img src="pendulum_animation.gif" alt="Single pendulum animation" style="max-width:100%;">
+                    <video width="1200" height="600" controls>
+                        <source src="pendulums_sepratix.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     
                     <p>
                         Notice that in the phase space representation, there appears to be redundant data. This arises because the angular coordinate is effectively defined modulo $2\pi$. Physically, the state of the pendulum is indistinguishable after a full rotation. Consequently, it is more natural to think of the phase space as having a circular coordinate for the angle and a real line for the momentum. Topologically, our phase space is $S^1 \times \mathbb{R}$, which is a cylinder. Thus, phase space trajectories occur on the surface of a cylinder.
@@ -102,12 +105,12 @@
                     </p>
                     
                     <p>
-                        In contrast, for the double pendulum, the distance between two such trajectories can grow exponentially with $$t$$, indicating extreme sensitivity to initial conditions. This exponential divergence leads us to ask: how can we quantify the rate at which nearby trajectories separate?
+                        In contrast, for the double pendulum, the distance between two such trajectories can grow exponentially with $t$, indicating extreme sensitivity to initial conditions. This exponential divergence leads us to ask: how can we quantify the rate at which nearby trajectories separate?
                     </p>
                     
                     <h2><strong>Lyapunov Exponent</strong></h2>
                     <p>
-                        To measure how rapidly two nearby trajectories in the double pendulum’s phase space diverge, we introduce the Lyapunov exponent $$\lambda$$. A positive $$\lambda$$ implies exponential sensitivity to initial conditions, a defining feature of chaos.
+                        To measure how rapidly two nearby trajectories in the double pendulum’s phase space diverge, we introduce the Lyapunov exponent $\lambda$. A positive $\lambda$ implies exponential sensitivity to initial conditions, a defining feature of chaos.
                     </p>
                     <img src="LE.png" alt="Lyapunov exponent figure" style="max-width:100%;">
                     <p>
@@ -129,7 +132,7 @@
                     </ol>
                     
                     <p>
-                        Repeat this procedure multiple times with different random initial displacements $$\delta$$ and average the results for a more robust estimate of $\lambda$.
+                        Repeat this procedure multiple times with different random initial displacements $\delta$ and average the results for a more robust estimate of $\lambda$.
                     </p>
                     
                     <p>
@@ -148,8 +151,14 @@
                     </p>
                     
                     <!-- Insert YouTube links for animations -->
-                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=4sdt-SuYvhA" frameborder="0" allowfullscreen></iframe>
-                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=9YH4EjrWcmA" frameborder="0" allowfullscreen></iframe>
+                    <video width="1200" height="600" controls>
+                        <source src="20LOWLE.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video width="1200" height="600" controls>
+                        <source src="20HIGHLE.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     
                     <h2><strong>Poincaré Map</strong></h2>
                     <p>
@@ -172,10 +181,21 @@
                     </p>
                     
                     <!-- Insert animation or video demonstrating Poincaré map construction -->
-                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=LArB5w8D-_Y" frameborder="0" allowfullscreen></iframe>
-                    <img src="LE.png" alt="Lyapunov exponent figure" style="max-width:100%;">
-                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=08SL3uop2Z8" frameborder="0" allowfullscreen></iframe>
-                    <img src="LE.png" alt="Lyapunov exponent figure" style="max-width:100%;">
+                    <video width="1200" height="600" controls>
+                        <source src="LOWLEPOINCARE.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    
+                    <img src="lowLEPoincare.png" alt="Lyapunov exponent figure" style="max-width:100%;">
+
+
+                                        <video width="1200" height="600" controls>
+                    <source src="HIGHLEPOINCARE.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <img src="HighLEpoincare.png" alt="Lyapunov exponent figure" style="max-width:100%;">
                     <p>
                         Through these techniques—the Lyapunov exponent and the Poincaré map—we gain a richer understanding of the intricate and often surprising dynamics of the double pendulum.
                     </p>
