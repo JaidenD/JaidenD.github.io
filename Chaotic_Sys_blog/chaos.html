@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Chaotic behaviour in the double pendulum</title>
+        <meta name="description" content="An exploration of chaotic behavior in the double pendulum, its phase space, Lyapunov exponents, and Poincaré maps.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/style.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <div class="content-section">
+            <a href="/index.html">Home</a>
+            <h1>Chaotic Behaviour in the Double Pendulum</h1>
+            
+            <div class="content-section">
+                <div>Note that this is work in progress.</div>
+                <div class="content-section">
+                    <h2><strong>Introduction</strong></h2>
+                    <p>
+                        Consider a single-armed pendulum, the dynamics of which are described by the following equations:
+                    </p>
+                    <p>
+                        $$\frac{d\theta}{dt} = \frac{p}{mL^2}, \quad\quad \frac{d\omega}{dt} =  -m g L \sin(\theta)$$
+                    </p>
+                    <p>
+                        Here, $$\theta(t)$$ is the angular displacement relative to the vertical axis, $$\omega(t)$$ is the angular momentum, $$g$$ is the acceleration due to gravity, and $$L$$ is the length of the pendulum.
+                    </p>
+                    
+                    <p>Animating the pendulum and its trajectory in phase space for given initial parameters:</p>
+                    <!-- Insert animation of single pendulum here -->
+                    <img src="pendulum_animation.gif" alt="Single pendulum animation" style="max-width:100%;">
+                    
+                    <p>
+                        Notice that in the phase space representation, there appears to be redundant data. This arises because the angular coordinate is effectively defined modulo $$2\pi$$. Physically, the state of the pendulum is indistinguishable after a full rotation. Consequently, it is more natural to think of the phase space as having a circular coordinate for the angle and a real line for the momentum. Topologically, our phase space is $$S^1 \times \mathbb{R}$$, which is a cylinder. Thus, phase space trajectories occur on the surface of a cylinder.
+                    </p>
+                    
+                    <!-- Insert figure showing phase portrait on cylinder -->
+                    <img src="phase_portrait_cylinder.png" alt="Phase portrait on a cylinder" style="max-width:100%;">
+                    
+                    <p>
+                        By adding an additional arm to the end of the pendulum, we obtain the double pendulum, a classic example of a chaotic system. The dynamics of the double pendulum can be derived from its Hamiltonian:
+                    </p>
+                    
+                    <p>
+                        $$\begin{aligned}
+                        H = & \ \frac{1}{2}m_1 l_\theta^2 \dot{\theta}^2 
+                        + \frac{1}{2}m_2 \big[ l_\theta^2 \dot{\theta}^2 
+                        + l_\phi^2 \dot{\phi}^2
+                        + 2 l_\theta l_\phi \dot{\theta} \dot{\phi} \cos(\theta - \phi) \big] \\
+                        & - m_1 g l_\theta \cos\theta
+                        - m_2 g \big[ l_\theta \cos\theta + l_\phi \cos\phi \big]
+                        \end{aligned}$$
+                    </p>
+                    
+                    <p>
+                        Using Hamilton's equations:
+                    </p>
+                    <p>
+                        $$\begin{aligned}
+                        \dot{\theta}  &= \frac{\partial H}{\partial p_{\theta}}, \quad\quad \dot{\phi} = \frac{\partial H}{\partial p_{\phi}}\\
+                        \dot{\omega}_{\theta}  &= -\frac{\partial H}{\partial \theta}, \quad\quad \dot{\omega}_{\phi} = -\frac{\partial H}{\partial \phi}
+                        \end{aligned}$$
+                    </p>
+                    
+                    <p>
+                        By similar reasoning to the single-armed pendulum, we find that the phase space of the double pendulum is $$S^1 \times S^1 \times \mathbb{R}^2.$$ Since $$S^1 \times S^1$$ is topologically equivalent to a torus $$T^1$$, the configuration space forms a torus. Specifying a point on two circles corresponds to specifying a point on a donut-shaped surface.
+                    </p>
+                    
+                    <!-- Insert figure showing mapping to a torus -->
+                    <img src="torus_mapping_diagram.jpg" alt="Mapping from circles to torus" style="max-width:100%;">
+                    
+                    <p>
+                        Mathematicians call this relation a homeomorphism, symbolically written as $$S^1 \times S^1 \simeq T^1$$. Thus, the phase space of the double pendulum can be viewed as $$T^1 \times \mathbb{R}^2$$, known as the cotangent bundle of the torus $$T^*(T^1)$$. Momentum is dual to velocity via the Legendre transformation, so the $$\mathbb{R}^2$$ where momenta reside is the dual vector space to the velocity space.
+                    </p>
+                    
+                    <p>
+                        Hence, unlike the single-armed pendulum’s two-dimensional phase space, the double pendulum’s phase space is four-dimensional.
+                    </p>
+                    
+                    <h2><strong>Chaos</strong></h2>
+                    <p>
+                        Consider again the single-armed pendulum. Suppose we choose two close initial conditions $$(\theta_0, \omega_0)$$ and $$(\theta_0+\varepsilon, \omega_0+\varepsilon)$$, where $$\varepsilon$$ is very small. If $$\phi_t$$ denotes the pendulum’s trajectory, we find that the distance between $$\phi_t(\theta_0, \omega_0)$$ and $$\phi_t(\theta_0+\varepsilon, \omega_0+\varepsilon)$$ remains small and grows at most linearly with time $$t$$. This reflects the stability and regular nature of the single-armed pendulum’s motion.
+                    </p>
+                    
+                    <p>
+                        In contrast, for the double pendulum, the distance between two such trajectories can grow exponentially with $$t$$, indicating extreme sensitivity to initial conditions. This exponential divergence leads us to ask: how can we quantify the rate at which nearby trajectories separate?
+                    </p>
+                    
+                    <h2><strong>Lyapunov Exponent</strong></h2>
+                    <p>
+                        To measure how rapidly two nearby trajectories in the double pendulum’s phase space diverge, we introduce the Lyapunov exponent $$\lambda$$. A positive $$\lambda$$ implies exponential sensitivity to initial conditions, a defining feature of chaos.
+                    </p>
+                    <img src="LE.png" alt="Lyapunov exponent figure" style="max-width:100%;">
+                    <p>
+                        To estimate $$\lambda$$, consider a reference trajectory $$u_1(t)$$ and another trajectory $$u_2(t)$$ that starts a small distance $$\delta$$ away in phase space. As both evolve, we record their separation at discrete time intervals. If the average growth of their separation behaves like $$e^{\lambda t}$$, then $$\lambda$$ quantifies how chaotic the system is.
+                    </p>
+                    
+                    <p>Algorithm (implemented in Julia using the ChaosTools package):</p>
+                    <ol>
+                        <li>Choose a trajectory $$u_1(t)$$ and a small initial displacement $$\delta$$.</li>
+                        <li>Define $$u_2(t)$$ so that $$u_2(x_0) = u_1(x_0+\delta)$$.</li>
+                        <li>Evolve both trajectories over a total time $$T$$, sampling at $$n$$ equally spaced points $$t_i$$.</li>
+                        <li>At each sample point $$t_i$$, measure the distance $$d(t_i)$$ between the two trajectories.</li>
+                        <li>Compute growth rates:
+                            $$ a_i = \frac{d(t_i)}{d(0)} $$ 
+                            for $$i = 1, \ldots, n$$.</li>
+                        <li>Average the logarithms of these ratios over time to estimate $$\lambda$$:
+                            $$ \lambda = \frac{1}{t_n - t_0} \sum_{i=1}^n \ln(a_i). $$
+                        </li>
+                    </ol>
+                    
+                    <p>
+                        Repeat this procedure multiple times with different random initial displacements $$\delta$$ and average the results for a more robust estimate of $$\lambda$$.
+                    </p>
+                    
+                    <p>
+                        Using this algorithm, we plotted the Lyapunov exponent as a function of the ratio of the arm lengths $$(L_2/L_1)$$:
+                    </p>
+                    
+                    <!-- Insert figure showing Lyapunov exponent variation -->
+                    <img src="lyapunov_exponent_variation.png" alt="Lyapunov exponent as a function of arm length ratio" style="max-width:100%;">
+                    
+                    <p>
+                        The upper and lower bands represent one standard deviation from the mean (the blue line).
+                    </p>
+                    
+                    <p>
+                        To build further intuition, for both the largest and smallest Lyapunov exponents found, we plot 20 pendulums whose initial angles differ by only $$10^{-3}$$:
+                    </p>
+                    
+                    <!-- Insert YouTube links for animations -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=4sdt-SuYvhA" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=9YH4EjrWcmA" frameborder="0" allowfullscreen></iframe>
+                    
+                    <h2><strong>Poincaré Map</strong></h2>
+                    <p>
+                        Generally, most trajectories in a chaotic system are indeed chaotic. However, some trajectories may exhibit periodic or quasi-periodic behavior, settling into repeating patterns or closed loops in phase space. To visualize and distinguish these special trajectories from the chaotic background, we use the Poincaré map.
+                    </p>
+                    
+                    <p>
+                        By choosing a lower-dimensional slice of the phase space and examining how trajectories intersect this slice over time, the Poincaré map reveals underlying structures that are hard to discern in the full, high-dimensional dynamics. Periodic trajectories appear as a finite set of points, quasi-periodic orbits form smooth, closed curves, and chaotic trajectories produce seemingly random, scattered points.
+                    </p>
+                    
+                    <!-- Insert Poincaré map figure -->
+                    <img src="poincaremap.png" alt="Poincaré Map" style="max-width:100%;">
+                    
+                    <p>
+                        For the double pendulum, we construct the Poincaré map by taking a transversal slice of the phase space. Since the system is conservative, we can think of this slice as taken from $$T^1 \times \mathbb{R}$$, recording where trajectories pierce a chosen section of the torus.
+                    </p>
+                    
+                    <p>
+                        In the following animations, red dots on the torus represent each time the trajectory intersects the transverse plane. These intersection points are then recorded on the Poincaré map, providing a clearer view of the system’s underlying behavior—whether periodic, quasi-periodic, or chaotic.
+                    </p>
+                    
+                    <!-- Insert animation or video demonstrating Poincaré map construction -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=LArB5w8D-_Y" frameborder="0" allowfullscreen></iframe>
+                    <img src="LE.png" alt="Lyapunov exponent figure" style="max-width:100%;">
+                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=08SL3uop2Z8" frameborder="0" allowfullscreen></iframe>
+                    <img src="LE.png" alt="Lyapunov exponent figure" style="max-width:100%;">
+                    <p>
+                        Through these techniques—the Lyapunov exponent and the Poincaré map—we gain a richer understanding of the intricate and often surprising dynamics of the double pendulum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
