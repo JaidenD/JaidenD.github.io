@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Chow's Theorem</title>
+        <meta name="description" content="A note building up to Chow's theorem and discussing its implications in physics and control.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/style.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="content-section">
+            <a href="/index.html">Home</a>
+
+            <h1>Chow's Theorem</h1>
+
+            <div class="content-section">
+                <div>Note that this is work in progress.</div>
+
+                <div class="content-section">
+
+                    <p>
+                        In this note we will first build up to Chow’s theorem and then discuss its
+                        implications in physics and control.
+                    </p>
+
+                    <p>
+                        Let \(\mathcal D\) be a \(C^\infty\)-distribution over a base manifold \(M\).
+                        We wish to leave open the possibility of \(\mathcal D\) having non-constant
+                        rank among points on \(M\), hence we view \(\mathcal D\) as a sheaf of vector
+                        fields rather than as a subbundle of \(TM\). We use
+                        \(\Gamma^\infty(\mathcal D)\) to denote smooth sections of \(\mathcal D\).
+                    </p>
+
+                    <p>
+                        In classical differential equation theory the central problem is to find
+                        integral curves of a vector field. The natural generalization of this idea is
+                        to find integral manifolds of distributions. We will quickly outline this idea
+                        and state a classical result. For simplicity, we will work purely with smooth
+                        objects.
+                    </p>
+
+                    <p>
+                        A local integral manifold through \(x_0\) of \(\mathcal D\) is an immersed
+                        submanifold \(S\) of a neighborhood \(U\) of \(x_0\) such that, for all
+                        \(x \in S\),
+                        \[
+                            T_xS \subseteq \mathcal D_x.
+                        \]
+                        A local integral manifold is maximal if
+                        \[
+                            T_xS = \mathcal D_x
+                        \]
+                        for all \(x \in S\). If a maximal local integral manifold for \(\mathcal D\)
+                        containing \(x\) contains all other maximal local integral manifolds through
+                        \(x\), then it is said to be a maximal integral manifold. The distribution
+                        \(\mathcal D\) is called integrable if every point has a maximal integral
+                        manifold through it.
+                    </p>
+
+                    <p>
+                        We now introduce a seemingly unrelated idea: involutivity. The distribution
+                        \(\mathcal D\) is said to be involutive if it is closed under the Lie bracket,
+                        \[
+                            [X,Y] = X(Y)-Y(X).
+                        \]
+                        That is, \(\mathcal D\) forms a Lie algebra.
+                    </p>
+
+                    <p>
+                        Surprisingly, these two ideas are beautifully related by the classical
+                        Frobenius theorem:
+                    </p>
+
+                    <div style="text-align: center;">
+                        \[
+                            \boxed{
+                            \mathcal D \text{ is integrable}
+                            \iff
+                            \mathcal D \text{ is involutive}
+                            }
+                        \]
+                    </div>
+
+                    <p>
+                        By Zorn’s lemma, one can also show that given a distribution \(\mathcal D\),
+                        there exists a minimal involutive distribution containing \(\mathcal D\),
+                        called the involutive closure of \(\mathcal D\). We denote it by
+                        \(\mathrm{Lie}^{(\infty)}(\mathcal D)\). Accepting this lemma without proof
+                        for now, we show how to construct \(\mathrm{Lie}^{(\infty)}(\mathcal D)\).
+                    </p>
+
+                    <p>
+                        Recursively define
+                        \[
+                        \begin{aligned}
+                        \mathrm{Lie}^{(l)}(\mathcal D)_x
+                        &=
+                        \mathrm{Lie}^{(l-1)}(\mathcal D)_x \\
+                        &\quad
+                        +
+                        \operatorname{span}_{\mathbb R}
+                        \left\{
+                        [X,Y](x)
+                        :
+                        X \in \Gamma^\infty\!\left(
+                        \mathrm{Lie}^{(l_1)}(\mathcal D)
+                        \right),
+                        \right. \\
+                        &\qquad\qquad\qquad\left.
+                        Y \in \Gamma^\infty\!\left(
+                        \mathrm{Lie}^{(l_2)}(\mathcal D)
+                        \right),
+                        \;
+                        l_1+l_2=l-1
+                        \right\},
+                        \\
+                        \mathrm{Lie}^{(0)}(\mathcal D)_x
+                        &=
+                        \mathcal D_x.
+                        \end{aligned}
+                        \]
+                    </p>
+
+                    <p>
+                        By the previously mentioned lemma, this recursion becomes stationary
+                        pointwise for finite \(m(x)\):
+                        \[
+                            \mathrm{Lie}^{(n)}(\mathcal D)_x
+                            =
+                            \mathrm{Lie}^{(n+1)}(\mathcal D)_x,
+                            \qquad
+                            \forall n \geq m(x).
+                        \]
+                    </p>
+
+                    <p>
+                        Hence, as the algebraists would say, the involutive closure of
+                        \(\mathcal D\) is obtained by taking the pointwise direct limit of
+                        \(\mathrm{Lie}^{(l)}(\mathcal D)\):
+                        \[
+                            \mathrm{Lie}^{(\infty)}(\mathcal D)_x
+                            =
+                            \varinjlim_l \mathrm{Lie}^{(l)}(\mathcal D)_x.
+                        \]
+                    </p>
+
+                    <p>
+                        Switching gears for a moment, we can also use \(\mathcal D\) to generate a set
+                        of diffeomorphisms on the base \(M\). Let \(\Phi_t^X\) be the time-\(t\) flow
+                        generated by the vector field \(X\). Define \(\mathrm{Diff}(\mathcal D)\) to
+                        be the set of diffeomorphisms of \(M\) of the form
+                        \[
+                            \Phi_{t_1}^{X_1}
+                            \circ
+                            \cdots
+                            \circ
+                            \Phi_{t_k}^{X_k},
+                            \qquad
+                            t_1,\dots,t_k \in \mathbb R,
+                            \quad
+                            X_1,\dots,X_k \in \Gamma^\infty(\mathcal D),
+                            \quad
+                            k \in \mathbb N.
+                        \]
+                        Note that this definition allows negative-time flows along a vector field.
+                    </p>
+
+                    <p>
+                        Define the orbit of a point \(x_0\) by
+                        \[
+                            \mathcal O(x_0,\mathcal D)
+                            =
+                            \left\{
+                            \phi(x_0)
+                            :
+                            \phi \in \mathrm{Diff}(\mathcal D)
+                            \right\}.
+                        \]
+                    </p>
+
+                    <p>
+                        In isolation, this object would be pretty horrible to compute, since one would
+                        have to compute the flows of \(k\) vector fields. However, amazingly, we can
+                        describe the orbit set using \(\mathrm{Lie}^{(\infty)}(\mathcal D)\).
+                    </p>
+
+                    <div style="text-align: center;">
+                        <p>
+                            <strong>Orbit Theorem.</strong>
+                        </p>
+                        <p>
+                            Let \(\mathcal D\) be a smooth distribution on \(M\), and let
+                            \(x_0 \in M\). Then the following statements hold:
+                        </p>
+                    </div>
+
+                    <ol>
+                        <li>
+                            \(\mathcal O(x_0,\mathcal D)\) is a smooth immersed submanifold.
+                        </li>
+                        <li>
+                            For each \(x \in \mathcal O(x_0,\mathcal D)\),
+                            \[
+                                \mathrm{Lie}^{(\infty)}(\mathcal D)_x
+                                \subseteq
+                                T_x \mathcal O(x_0,\mathcal D).
+                            \]
+                        </li>
+                        <li>
+                            If \(x \sim y\) means \(y \in \mathcal O(x,\mathcal D)\), then
+                            \[
+                                M
+                                =
+                                \bigsqcup_{[x] \in M/{\sim}}
+                                \mathcal O(x,\mathcal D).
+                            \]
+                        </li>
+                    </ol>
+
+                    <p>
+                        Note that if the distribution were analytic rather than smooth, then the
+                        inclusion in point 2 would be an equality. To illustrate this, we show an
+                        example of a smooth distribution where this inclusion is strict.
+                    </p>
+
+                    <p>
+                        Let
+                        \[
+                            f(x)
+                            =
+                            \begin{cases}
+                                e^{-1/x^2}, & x \neq 0, \\
+                                0, & x = 0.
+                            \end{cases}
+                        \]
+                        You may remember from your analysis class that \(f\) is smooth but not
+                        analytic.
+                    </p>
+
+                    <p>
+                        Define a smooth distribution
+                        \[
+                            \mathcal D
+                            =
+                            \operatorname{span}\{X,Y\},
+                            \qquad
+                            X = \partial_x,
+                            \qquad
+                            Y = f(x)\partial_y.
+                        \]
+                    </p>
+
+                    <p>
+                        Since \(Y(0,y)=0\), we have
+                        \[
+                            \mathcal D_{(0,y)}
+                            =
+                            \operatorname{span}\{\partial_x\}.
+                        \]
+                        Computing the first Lie bracket gives
+                        \[
+                            [X,Y]
+                            =
+                            f'(x)\partial_y.
+                        \]
+                    </p>
+
+                    <p>
+                        Acting by \(X\) \(k\) times via the Lie bracket gives \(k\) nested Lie
+                        brackets, denoted \(\mathrm{ad}_X^k(\cdot)\), so computing higher brackets
+                        gives
+                        \[
+                            \mathrm{ad}_X^k(Y)
+                            =
+                            f^{(k)}(x)\partial_y.
+                        \]
+                    </p>
+
+                    <p>
+                        In particular, \(f\) is flat at zero, so
+                        \[
+                            f^{(k)}(0)=0
+                            \qquad
+                            \text{for all } k \geq 0.
+                        \]
+                        Therefore every iterated Lie bracket evaluated at \((0,y)\) gives no
+                        \(\partial_y\)-direction. Hence
+                        \[
+                            \mathrm{Lie}^{(\infty)}(\mathcal D)_{(0,y)}
+                            =
+                            \operatorname{span}\{\partial_x\}.
+                        \]
+                    </p>
+
+                    <p>
+                        However, the orbit through \((0,y)\) is two-dimensional. Start at
+                        \((0,y)\), then flow along \(X\) to \((\varepsilon,y)\) with
+                        \(\varepsilon \neq 0\). At this new point,
+                        \[
+                            Y(\varepsilon,y)
+                            =
+                            f(\varepsilon)\partial_y
+                            \neq 0.
+                        \]
+                        Thus, one can move in the \(y\)-direction and then flow back along \(X\) to
+                        \(x=0\). The net action of this flow is a translation along the
+                        \(y\)-direction despite the Lie brackets at \(x=0\) missing the direction.
+                    </p>
+
+                    <p>
+                        Therefore,
+                        \[
+                            T_{(0,y)}
+                            \mathcal O((0,y),\mathcal D)
+                            =
+                            T_{(0,y)}\mathbb R^2
+                            =
+                            \operatorname{span}\{\partial_x,\partial_y\},
+                        \]
+                        while
+                        \[
+                            \mathrm{Lie}^{(\infty)}(\mathcal D)_{(0,y)}
+                            =
+                            \operatorname{span}\{\partial_x\}.
+                        \]
+                        Thus we get the strict inclusion
+                        \[
+                            \mathrm{Lie}^{(\infty)}(\mathcal D)_x
+                            \subset
+                            T_x\mathcal O(x_0,\mathcal D).
+                        \]
+                    </p>
+
+                    <p>
+                        We now arrive at Chow’s theorem as a corollary of the orbit theorem.
+                    </p>
+
+                    <div style="text-align: center;">
+                        <p>
+                            <strong>Chow’s Theorem.</strong>
+                        </p>
+                        <p>
+                            If \(M\) is connected and if, for a \(C^\infty\)-distribution
+                            \(\mathcal D\) on \(M\),
+                            \[
+                                \mathrm{Lie}^{(\infty)}(\mathcal D)=TM,
+                            \]
+                            then
+                            \[
+                                \mathcal O(x_0,\mathcal D)=M.
+                            \]
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
