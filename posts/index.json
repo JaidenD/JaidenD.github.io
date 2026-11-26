@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "chows-theorem",
+    "title": "Chow's Theorem, Physics, and Control",
+    "date": "2026-06-18",
+    "summary": "A note building up to Chow's theorem and discussing its implications in physics and control.",
+    "tags": [],
+    "status": "incomplete"
+  },
+  {
+    "slug": "teaching-mathematics",
+    "title": "On Teaching Mathematics",
+    "date": "2026-06-06",
+    "summary": "V. I. Arnold's essay On Teaching Mathematics.",
+    "tags": []
+  },
+  {
+    "slug": "double-pendulum",
+    "title": "Chaotic Behaviour in the Double Pendulum",
+    "date": "2024-12-14",
+    "summary": "An exploration of chaotic behaviour in the double pendulum, its phase space, Lyapunov exponents, and Poincaré maps.",
+    "tags": []
+  },
+  {
+    "slug": "pde-symmetries",
+    "title": "Symmetry of Differential Equations",
+    "date": "2023-06",
+    "summary": "An exploration of the symmetries of partial differential equations using modern mathematical tools.",
+    "tags": [],
+    "status": "incomplete"
+  }
+]
