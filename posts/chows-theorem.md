@@ -1,8 +1,7 @@
 ---
 title: Chow's Theorem, Physics, and Control
 date: 2026-06-18
-status: incomplete
-summary: A note building up to Chow's theorem and discussing its implications in physics and control.
+summary: A note building up to Chow's theorem and discussing its implications in physics and control, including why the second law of thermodynamics needs entropy to exist.
 ---
 
 In this note we will first build up to Chow’s theorem and then discuss its implications in physics and control.
@@ -233,3 +232,112 @@ $$
 \mathcal O(x_0,\mathcal D)=M.
 $$
 :::
+
+In words: at each point we may only be allowed to move in a few directions, but as long as Lie brackets of those directions eventually span the whole tangent space, we can get from any point of $M$ to any other.
+
+## Seeing it
+
+The simplest distribution where Chow's theorem has something to say lives in $\mathbb R^3$. Let
+$$
+X = \partial_x - \frac{y}{2}\,\partial_z,
+\qquad
+Y = \partial_y + \frac{x}{2}\,\partial_z,
+\qquad
+\mathcal D = \operatorname{span}\{X,Y\}.
+$$
+At every point $\mathcal D$ is a plane, so a curve tangent to $\mathcal D$ can never move straight up. However,
+$$
+[X,Y] = \partial_z,
+$$
+so $\mathrm{Lie}^{(1)}(\mathcal D) = T\mathbb R^3$ everywhere, and Chow's theorem says every point of $\mathbb R^3$ can be reached from every other by curves tangent to $\mathcal D$.
+
+So how do we move up? Flow along $X$ for time $t$, then along $Y$, then $-X$, then $-Y$. Seen from above this traces out a square and comes back to where it started, but in $\mathbb R^3$ it doesn't close up:
+$$
+\Phi^{Y}_{-t}\circ\Phi^{X}_{-t}\circ\Phi^{Y}_{t}\circ\Phi^{X}_{t}(p) = p + t^2\,\partial_z .
+$$
+For a general distribution the same loop of flows lands at $p + t^2[X,Y](p) + O(t^3)$, and this is the mechanism behind Chow's theorem: a Lie bracket is a direction we can reach by wiggling.
+
+For this particular $\mathcal D$ there is an even cleaner way to see it. A curve $(x(s),y(s),z(s))$ is tangent to $\mathcal D$ exactly when
+$$
+\dot z = \tfrac12\left(x\dot y - y\dot x\right),
+$$
+so if its shadow in the $xy$-plane is a closed loop, Green's theorem says the curve climbs by
+$$
+\Delta z = \frac12\oint x\,dy - y\,dx = \text{signed area enclosed by the shadow}.
+$$
+
+<figure>
+<div class="chow-fig" data-fig="loop"></div>
+<figcaption>The loop $X, Y, -X, -Y$, lifted to $\mathcal D$. The small squares are the planes $\mathcal D_p$, and the blue one is the plane the curve has to stay in right now. The red gap at the end is $t^2$, the area of the shadow. The second button swaps in $\partial_x + \frac y2\partial_z$ and $\partial_y + \frac x2\partial_z$, whose bracket is zero: their planes tilt too, but they fit together into the surfaces $z = xy/2 + c$, and every loop closes. Drag to rotate.</figcaption>
+</figure>
+
+<script src="chows-theorem/figures.js"></script>
+
+This is also the simplest interesting control system. With two controls $u_1, u_2$,
+$$
+\dot q = u_1 X(q) + u_2 Y(q)
+$$
+steers a point in two directions through a three-dimensional space, and Chow's theorem says it is controllable: any state can be steered to any other. (This system is often called Brockett's nonholonomic integrator.) Parallel parking is the same idea one level deeper. A car can only drive and turn its wheels, but the bracket of "steer" and "drive" turns the car, and bracketing that with "drive" again gives the sideways shift we need to get into the spot.
+
+## Thermodynamics
+
+Chow's theorem also shows up somewhere I didn't expect: the second law of thermodynamics.
+
+The state of a gas is a point of a manifold $M$, with coordinates like temperature $T$ and volume $V$, and a slow (quasi-static) process is a curve in $M$. By the first law, the heat absorbed along a process is the integral of the 1-form
+$$
+\delta Q = dU + p\,dV,
+$$
+where $U$ is the internal energy and $p$ the pressure. For $n$ moles of a monatomic ideal gas, $U = \frac32 nRT$ and $pV = nRT$, so
+$$
+\delta Q = \tfrac32 nR\,dT + \frac{nRT}{V}\,dV.
+$$
+The $\delta$ is a warning that $\delta Q$ isn't $d$ of anything: $d(\delta Q) = \frac{nR}{V}\,dT\wedge dV \neq 0$. The heat absorbed depends on the path, which is why "the amount of heat in a gas" doesn't mean anything.
+
+A (reversible) adiabatic process is one that absorbs no heat at any moment, that is, a curve tangent to the distribution
+$$
+\mathcal A = \ker \delta Q .
+$$
+Since $\delta Q$ is a single 1-form, $\mathcal A$ is a hyperplane at every state. Carathéodory's 1909 formulation of the second law is a statement about exactly this distribution:
+
+::: principle Carathéodory
+Arbitrarily close to any state there are states that cannot be reached from it by an adiabatic process.
+:::
+
+For example, we can warm up an insulated gas at fixed volume by stirring it, but nothing we do while it stays insulated will bring it back to a colder state with the same volume.
+
+Compare this with Chow's theorem. If $\mathcal A$ were bracket-generating near some state, every nearby state would be reachable by adiabatic curves, which Carathéodory forbids. For a hyperplane distribution this is a strong restriction. For $X, Y \in \Gamma^\infty(\mathcal A)$,
+$$
+d(\delta Q)(X,Y) = X\big(\delta Q(Y)\big) - Y\big(\delta Q(X)\big) - \delta Q([X,Y]) = -\,\delta Q([X,Y]),
+$$
+so either every bracket of sections of $\mathcal A$ lies in $\mathcal A$, or at some state a bracket points out of the hyperplane. In the second case it also does so at all nearby states, and since $\mathcal A$ is only one dimension short of everything, $\mathrm{Lie}^{(1)}(\mathcal A) = TM$ on a connected neighbourhood $U$ of that state. Chow's theorem applied to $U$ then says every state in $U$ can be reached adiabatically from every other one, contradicting Carathéodory's principle.
+
+Hence $\mathcal A$ is involutive, and by Frobenius it is integrable: the state space is foliated by hypersurfaces, the adiabats, and an adiabatic process stays on the one it starts on. Locally the adiabats are the level sets of a function $S$, and since $\delta Q$ and $dS$ have the same kernel,
+$$
+\delta Q = \lambda\, dS
+$$
+for some nonvanishing function $\lambda$. The function $S$ is the entropy and $1/\lambda$ is an integrating factor for $\delta Q$. With one more argument, comparing two systems in thermal contact, one can show that $\lambda$ can be taken to be the absolute temperature, which gives the familiar $dS = \delta Q / T$. We will skip that part.
+
+For the ideal gas we can check all of this directly:
+$$
+\frac{\delta Q}{T} = \tfrac32 nR\,\frac{dT}{T} + nR\,\frac{dV}{V} = d\Big(nR\ln\big(T^{3/2}V\big)\Big),
+$$
+so $S = nR\ln(T^{3/2}V) + \text{const}$, and the adiabats are the curves $T^{3/2}V = \text{const}$, or equivalently $pV^{5/3} = \text{const}$.
+
+There's a catch, though. On a two-dimensional state space every 1-form has an integrating factor, because a line field has no room for a bracket to escape: $[X, fX] = (Xf)\,X$. So the example above doesn't really test anything. The second law starts to have content when the state space is at least three-dimensional, for instance for two gases in thermal contact: two cylinders sharing a wall that conducts heat, each with its own piston, inside an insulated box. The state is $(V_1, V_2, T)$ and, with $n$ moles of each gas,
+$$
+\delta Q = 3nR\,dT + \frac{nRT}{V_1}\,dV_1 + \frac{nRT}{V_2}\,dV_2 .
+$$
+Here integrability is not automatic, but $1/T$ is again an integrating factor, with $S = nR\ln(T^3V_1V_2) + \text{const}$. The figure below shows what would go wrong if it weren't.
+
+<figure>
+<div class="chow-fig" data-fig="gas"></div>
+<figcaption>Expand gas 1, expand gas 2, compress gas 1, compress gas 2, all inside the insulation. For the real gas the state stays on its adiabat $T^3V_1V_2 = \text{const}$ (green) and returns to where it started. The second button uses a made-up heat form whose planes twist like the ones in the first figure: the cycle doesn't close, and the gas comes back colder every time.</figcaption>
+</figure>
+
+The made-up gas would be a perpetual motion machine. Each cycle returns both pistons to where they started and exchanges no heat, yet leaves the gas colder, so by the first law the lost internal energy went out as work on the pistons. Let the gas warm back up from the room at fixed volume and repeat, and we are turning heat from a single reservoir entirely into work, which is exactly what the Kelvin–Planck form of the second law forbids. So the second law, in Carathéodory's form, is the statement that Chow's theorem must *fail* for $\ker\delta Q$, and Frobenius turns that failure into the existence of entropy.
+
+## Further reading
+
+- A. A. Agrachev and Yu. L. Sachkov, *Control Theory from the Geometric Viewpoint*. The orbit theorem and the Rashevskii–Chow theorem, with a control theorist's point of view.
+- C. Carathéodory, "Untersuchungen über die Grundlagen der Thermodynamik", *Mathematische Annalen* 67 (1909). The original axiomatic treatment of thermodynamics.
+- P. Bamberg and S. Sternberg, *A Course in Mathematics for Students of Physics*, Volume 2. Includes a readable account of Carathéodory's approach.

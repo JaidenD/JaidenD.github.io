@@ -54,6 +54,8 @@
     example: { label: 'Example', numbered: true, style: 'example' },
     exercise: { label: 'Exercise', numbered: true, style: 'example' },
     problem: { label: 'Problem', numbered: true, style: 'example' },
+    axiom: { label: 'Axiom', numbered: false, style: 'definition' },
+    principle: { label: 'Principle', numbered: false, style: 'definition' },
     remark: { label: 'Remark', numbered: false, style: 'remark' },
     note: { label: 'Note', numbered: false, style: 'remark' },
     proof: { label: 'Proof', numbered: false, style: 'proof' },
@@ -569,7 +571,7 @@
 
     // Paths in a post are relative to the .md file, so "images/plot.png" means
     // posts/images/plot.png, and a link to "other-post.md" opens that post.
-    root.querySelectorAll('img[src], a[href], video[src], source[src]').forEach((el) => {
+    root.querySelectorAll('img[src], a[href], video[src], source[src], script[src]').forEach((el) => {
       const attr = el.hasAttribute('href') ? 'href' : 'src';
       const url = el.getAttribute(attr);
       if (!url || /^(?:[a-z][a-z0-9+.-]*:|\/|#|\?)/i.test(url)) return;
@@ -577,6 +579,15 @@
       el.setAttribute(attr, post
         ? 'post.html?p=' + encodeURIComponent(safeDecode(post[1])) + (post[2] || '')
         : POSTS_DIR + url);
+    });
+
+    // Scripts in a post (say, for an interactive figure) only run if re-created.
+    root.querySelectorAll('script').forEach((old) => {
+      const script = document.createElement('script');
+      for (const a of old.attributes) script.setAttribute(a.name, a.value);
+      script.async = false;
+      script.textContent = old.textContent;
+      old.replaceWith(script);
     });
 
     // Wide tables scroll sideways instead of breaking the layout on phones.

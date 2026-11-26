@@ -3,9 +3,8 @@
     "slug": "chows-theorem",
     "title": "Chow's Theorem, Physics, and Control",
     "date": "2026-06-18",
-    "summary": "A note building up to Chow's theorem and discussing its implications in physics and control.",
-    "tags": [],
-    "status": "incomplete"
+    "summary": "A note building up to Chow's theorem and discussing its implications in physics and control, including why the second law of thermodynamics needs entropy to exist.",
+    "tags": []
   },
   {
     "slug": "teaching-mathematics",
