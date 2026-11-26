@@ -24,8 +24,7 @@
     "slug": "pde-symmetries",
     "title": "Symmetry of Differential Equations",
     "date": "2023-06",
-    "summary": "An exploration of the symmetries of partial differential equations using modern mathematical tools.",
-    "tags": [],
-    "status": "incomplete"
+    "summary": "Finding the symmetries and conservation laws of a PDE by linearizing it, with worked examples for the heat and Burgers equations, and what they are good for in engineering.",
+    "tags": []
   }
 ]

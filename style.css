@@ -241,9 +241,9 @@ img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
 }
 
 .table-wrap { margin: 1.6em 0; overflow-x: auto; }
-.post-body table { border-collapse: collapse; font-size: 0.95em; }
+.post-body table { border-collapse: collapse; font-size: 0.9em; line-height: 1.45; }
 .post-body th,
-.post-body td { padding: 0.4em 0.9em; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.post-body td { padding: 0.35em 0.6em; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
 .post-body th { border-bottom-color: var(--remark); font-family: var(--mono); }
 
 .post-body details { margin: 1.4em 0; }
